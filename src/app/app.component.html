@@ -1,5 +1,41 @@
-<div class="grid h-screen place-items-center">
-  <div class="font-bold text-3xl">
-    Fyle Internship Challenge
-  </div>
+<div class="container">
+  <header class="header">
+    <h1>Github Profile</h1>
+    <div class="search-container">
+      <input type="text" class="search-bar" placeholder="Enter GitHub username" [(ngModel)]="username">
+      <button class="search-button" (click)="searchUser()">Search</button>
+    </div>
+  </header>
+
+  <main>
+    <div *ngIf="userDetails" class="user-details">
+      <img [src]="userDetails.avatar_url" alt="Avatar" class="avatar">
+      <div class="user-info">
+        <h2>{{ userDetails.name }}</h2>
+        <p>{{ userDetails.bio }}</p>
+        <p>Followers: {{ userDetails.followers }} | Following: {{ userDetails.following }}</p>
+      </div>
+    </div>
+
+    <h2 class="sub-header">Repositories</h2>
+    <div *ngFor="let repo of pagedRepositories[currentPage]" class="repository">
+      <h3>{{ repo.name }}</h3>
+      <p>{{ repo.description }}</p>
+      <p>Language: {{ repo.language }} | Stars: {{ repo.stargazers_count }} | Forks: {{ repo.forks }}</p>
+      <a [href]="repo.html_url" target="_blank">View on GitHub</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="items-per-page-container">
+      <label for="itemsPerPage">Items per page:</label>
+      <select id="itemsPerPage" [(ngModel)]="itemsPerPage" (change)="onItemsPerPageChange()">
+        <option *ngFor="let option of itemsPerPageOptions" [value]="option">{{ option }}</option>
+      </select>
+    </div>
+    <div class="pagination">
+      <button class="page-button" (click)="prevPage()" [disabled]="currentPage === 0">Previous</button>
+      <button class="page-button" (click)="nextPage()" [disabled]="currentPage === totalPages - 1">Next</button>
+    </div>
+  </footer>
 </div>

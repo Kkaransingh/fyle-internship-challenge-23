@@ -1,0 +1,154 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .header {
+    background-color: grey;
+    padding: 10px;
+    text-align: center;
+    color: white;
+  }
+  
+  .search-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  .search-bar {
+    padding: 5px;
+    margin-right: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    color:#ccc
+  }
+  
+  .search-bar:hover{
+    color: black;
+  }
+  
+  .search-button {
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .search-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .user-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .avatar {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    margin-bottom: 10px;
+  }
+  
+  .user-info {
+    text-align: center;
+  }
+  
+  .sub-header {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .repository {
+    background-color: #333;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 4px;
+  }
+  
+  .repository h3, .repository p, .repository a {
+    color: white;
+  }
+  
+  .repository a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .repository a:hover {
+    text-decoration: underline;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .page-button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .page-button[disabled] {
+    background-color: grey;
+    cursor: not-allowed;
+  }
+  
+  .footer {
+    background-color: grey;
+    padding: 10px;
+    text-align: center;
+    color: white;
+    margin-top: auto;
+  }
+  
+  .items-per-page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  #itemsPerPage {
+    margin-left: 5px;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  @media (min-width: 600px) {
+    .user-details {
+      flex-direction: row;
+      justify-content: center;
+      text-align: left;
+    }
+  
+    .avatar {
+      margin-right: 20px;
+    }
+  
+    .user-info {
+      text-align: left;
+    }
+  }
+  
