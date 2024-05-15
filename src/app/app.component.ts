@@ -9,44 +9,60 @@ import { GithubService } from './github.service';
 export class AppComponent {
   title = 'responsive-webpage';
   username: string = '';
-  userDetails: any = {};
+  userDetails: any;
   repositories: any[] = [];
-  pagedRepositories: any[] = [];
+  pagedRepositories: any[][] = [];
   currentPage: number = 0;
-  itemsPerPage: number = 3;
-  itemsPerPageOptions: number[] = [3, 5, 10]; // Options for number of repositories per page
+  itemsPerPage: number = 10;
+  itemsPerPageOptions: number[] = [10, 25, 50, 100];
+  loading: boolean = false;  // Add the loading property
 
   constructor(private githubService: GithubService) {}
 
   searchUser() {
     if (this.username) {
-      this.githubService.getUserDetails(this.username).subscribe(
-        (userData: any) => {
-          this.userDetails = userData;
-        },
-        (error) => {
-          console.error('Error fetching user details:', error);
-        }
-      );
-
-      this.githubService.getRepositories(this.username).subscribe(
-        (data: any[]) => {
-          this.repositories = data;
-          this.paginateRepositories();
-        },
-        (error) => {
-          console.error('Error fetching repositories:', error);
-        }
-      );
+      this.loading = true;  // Set loading to true when the search starts
+      this.githubService.getUserDetails(this.username)
+        .subscribe(
+          (data) => {
+            this.userDetails = data;
+            this.searchRepositories();
+          },
+          (error) => {
+            console.error('Error fetching user details:', error);
+            this.loading = false;  // Set loading to false in case of an error
+          }
+        );
     }
   }
 
-  paginateRepositories() {
-    const totalPages = Math.ceil(this.repositories.length / this.itemsPerPage);
-    this.pagedRepositories = Array.from({ length: totalPages }, (_, index) => {
-      const startIndex = index * this.itemsPerPage;
-      return this.repositories.slice(startIndex, startIndex + this.itemsPerPage);
-    });
+  searchRepositories() {
+    if (this.username) {
+      this.githubService.getRepositories(this.username)
+        .subscribe(
+          (data: any[]) => {
+            this.repositories = data;
+            this.setPagedRepositories();
+            this.loading = false;  // Set loading to false when data fetching is complete
+          },
+          (error) => {
+            console.error('Error fetching repositories:', error);
+            this.loading = false;  // Set loading to false in case of an error
+          }
+        );
+    }
+  }
+
+  setPagedRepositories() {
+    this.pagedRepositories = [];
+    for (let i = 0; i < this.repositories.length; i += this.itemsPerPage) {
+      this.pagedRepositories.push(this.repositories.slice(i, i + this.itemsPerPage));
+    }
+    this.currentPage = 0;
+  }
+
+  onItemsPerPageChange() {
+    this.setPagedRepositories();
   }
 
   prevPage() {
@@ -59,13 +75,5 @@ export class AppComponent {
     if (this.currentPage < this.pagedRepositories.length - 1) {
       this.currentPage++;
     }
-  }
-
-  onItemsPerPageChange() {
-    this.paginateRepositories();
-  }
-
-  get totalPages(): number {
-    return this.pagedRepositories.length;
   }
 }

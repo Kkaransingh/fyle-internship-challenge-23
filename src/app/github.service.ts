@@ -6,15 +6,15 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class GithubService {
-  private baseUrl = 'https://api.github.com';
+  private baseUrl: string = 'https://api.github.com/users';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getUserDetails(username: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}/users/${username}`);
+    return this.http.get<any>(`${this.baseUrl}/${username}`);
   }
 
   getRepositories(username: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/users/${username}/repos`);
+    return this.http.get<any[]>(`${this.baseUrl}/${username}/repos`);
   }
 }

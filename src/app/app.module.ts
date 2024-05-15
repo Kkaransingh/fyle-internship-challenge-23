@@ -1,11 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { NgxPaginationModule } from 'ngx-pagination'; // Import NgxPaginationModule
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { GithubService } from './github.service'; // Import GithubService
+import { GithubService } from './github.service';
 
 @NgModule({
   declarations: [
@@ -13,11 +12,10 @@ import { GithubService } from './github.service'; // Import GithubService
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
     FormsModule,
-    NgxPaginationModule // Ensure NgxPaginationModule is imported here
+    HttpClientModule
   ],
-  providers: [GithubService], // Provide GithubService
+  providers: [GithubService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
