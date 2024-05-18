@@ -1,41 +1,108 @@
-# Fyle Frontend Challenge
+## GitBuddy - Github Repositories Listing Page
 
-## Who is this for?
+### Project Overview
 
-This challenge is meant for candidates who wish to intern at Fyle and work with our engineering team. The candidate should be able to commit to at least 6 months of dedicated time for internship.
+Git Google is an Angular 14+ single-page application (SPA) that allows users to input a GitHub username and displays the public GitHub repositories associated with that user. The application includes features such as server-side pagination, a search bar, skeleton loaders, and a dropdown for selecting page size.
 
-## Why work at Fyle?
+### Features
 
-Fyle is a fast-growing Expense Management SaaS product. We are ~40 strong engineering team at the moment. 
+- Search GitHub users by username
+- Display public repositories of the user
+- Server-side pagination
+- Select page size (10, 20, 50, 100)
+- Skeleton loaders during API calls
+- Cache API responses to avoid duplicate calls
+- Zero state for users not found
+- Tailwind CSS for styling
+- Unit tests with 100% code coverage for one component and one service
 
-We are an extremely transparent organization. Check out our [careers page](https://careers.fylehq.com) that will give you a glimpse of what it is like to work at Fyle. Also, check out our Glassdoor reviews [here](https://www.glassdoor.co.in/Reviews/Fyle-Reviews-E1723235.htm). You can read stories from our teammates [here](https://stories.fylehq.com).
+### Prerequisites
 
-## Challenge outline
+- Node.js (v14 or higher)
+- Angular CLI (v14 or higher)
 
-This challenge involves implementing application using github api. 
+### Hosting
 
-The services that you need to use are already implemented - check out ApiService.
+The application is hosted on Vercel. You can access it [here](https://fyle-internship-challenge-23-six-lemon.vercel.app/).
 
-You can see details of this challenge [here](https://fyleuniverse.notion.site/fyleuniverse/Fyle-Frontend-development-challenge-cb5085e5e0864e769e7b98c694400aaa)
+### API Documentation
 
-__Note__ - This challenge is in angular. We work on angular frameworks & after you join we expect the same from you. Hence it is required to complete this assignement in angular itself.
+For detailed information about the GitHub API used in this project, visit the [GitHub REST API documentation](https://docs.github.com/en/rest/reference).
 
-## What happens next?
 
-You will hear back within 48 hours from us via email.
+### Assumptions
 
-## Installation
+- The GitHub API rate limits are managed using caching to reduce duplicate calls.
+- The application handles common errors such as user not found and API rate limits gracefully.
+- The design is flexible and can be modified to fit different UI/UX requirements.
 
-1. Fork this repository to your github account.
-2. Clone the forked repository and proceed with steps mentioned below.
+### Known Issues
+
+- The application might not work as expected if GitHub API rate limits are exceeded. Ensure to handle API rate limits by caching the responses and displaying appropriate messages to the user.
+
+### Future Improvements
+
+- Enhance search functionality with advanced filters.
+- Implement user authentication to access private repositories.
+- Improve UI/UX with more interactive elements and better animations.
+
+
+### Project Structure
+
+```
+src/
+│
+├── app/
+│   ├── components/
+│   │   ├── search-bar/
+│   │   │   ├── search-bar.component.ts
+│   │   │   ├── search-bar.component.html
+│   │   │   └── search-bar.component.scss
+│   │   ├── repository-list/
+│   │   │   ├── repository-list.component.ts
+│   │   │   ├── repository-list.component.html
+│   │   │   └── repository-list.component.scss
+│   │   └── repository-item/
+│   │       ├── repository-item.component.ts
+│   │       ├── repository-item.component.html
+│   │       └── repository-item.component.scss
+│   ├── services/
+│   │   ├── github.service.ts
+│   │   └── github.service.spec.ts
+│   ├── app.component.ts
+│   ├── app.component.html
+│   ├── app.component.scss
+│   ├── app.module.ts
+│   └── app-routing.module.ts
+│
+├── assets/
+│   ├── logo.png
+│   └── about.png
+│
+└── styles/
+    ├── tailwind.css
+    └── global.scss
+```
+
 
 ### Install requirements
+* Clone the repository:
+   ```bash
+   git clone https://github.com/Kkaransingh/fyle-internship-challenge-23.git
+   cd fyle-internship-challenge-23
+   ```
 * Install angular cli [Ref](https://angular.io/cli)
 * `npm install` in this repository 
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+
+
+### Contact
+
+If you have any questions, feel free to contact me at karankamal1807@gmail.com.
+
 
 ## Further help
 
